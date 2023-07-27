@@ -1,0 +1,45 @@
+slug: classes
+name: classes
+graphql:
+  resource: api
+  operation: |-
+    fragment EqxInstructorBaseFragment on EqxInstructor {
+        name
+        alias: name(format: ALIAS)
+    }
+    fragment InClubClassFragment on InClubClass {
+        name
+        description
+        duration
+        facility {
+            id
+            name
+        }
+        instructors {
+            ...EqxInstructorBaseFragment
+        }
+    }
+    
+    query InClubSessionQuery(
+        $startDate: DateTime!, $endDate: DateTime!, $filterBy: InClubSessionFiltersInput!
+    ) {
+        inClubSchedule(startDate: $startDate, endDate: $endDate, filterBy: $filterBy) {
+            id
+    	    day
+            sessions {
+                ...InClubClassFragment
+            }
+        }
+    }
+  variables:
+    endDate: 2023-08-07T23:59:59-04:00
+    filterBy:
+      eqxInstructors:
+      - ZXF4X2luc3RydWN0b3I6OTM0Mw==
+      onlyAvailable: false
+      skipStudioLayout: true
+    sessionsListSessionResize:
+      maxHeight: 660.0
+      maxWidth: 660.0
+    startDate: 2023-08-01T00:00:00-04:00
+  retryFailures: true

@@ -1,0 +1,6 @@
+resources:
+  - id: res-equinox-api
+    slug: api
+    name: Equinox API
+    kind: graphql
+    baseUrl: https://api.core.equinoxplus.com/gqlgateway
