@@ -1,0 +1,1 @@
+## equinox-class-manager
