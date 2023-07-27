@@ -1,6 +1,6 @@
 {
-  "name": "equinox",
-  "version": "1.0.0",
+  "name": "equinox-class-manager",
+  "version": "0.0.1",
   "license": "MIT",
   "dependencies": {
     "@airplane/views": "^2.1.3",
