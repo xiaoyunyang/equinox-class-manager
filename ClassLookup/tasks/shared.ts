@@ -13,6 +13,7 @@ export const QUERY = gql`
   fragment InClubClassFragment on InClubClass {
       name
       description
+      startsAt
       duration
       facility {
           id
@@ -27,7 +28,7 @@ export const QUERY = gql`
       $startDate: DateTime!, $endDate: DateTime!, $filterBy: InClubSessionFiltersInput!
   ) {
       inClubSchedule(startDate: $startDate, endDate: $endDate, filterBy: $filterBy) {
-          id
+        id
         day
           sessions {
               ...InClubClassFragment
@@ -44,8 +45,8 @@ export const genMappedData = (data) => {
     const mappedData = data.inClubSchedule.map((session) => {
         const { day, sessions } = session
         const mappedSessions = sessions.map((session) => {
-        const { name, facility, instructors } = session
-        return { day, name, location: facility.name, instructor: instructors[0].name}
+        const { name, startsAt, facility, instructors } = session
+        return { day, startsAt, name, location: facility.name, instructor: instructors[0].name}
         })
         return mappedSessions
     })
