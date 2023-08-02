@@ -50,8 +50,8 @@ const DEFAULT_VARIABLES = {
 
 export default airplane.task(
   {
-    slug: "class_lookup",
-    name: "class lookup",
+    slug: "class_by_instructor",
+    name: "class by instructor",
     parameters: {
       instructor: {
         name: "Instructor",
@@ -59,6 +59,7 @@ export default airplane.task(
         options: [
           { label: "Khaleah", value: "ZXF4X2luc3RydWN0b3I6OTM0Mw==" },
           { label: "Andrew", value: "ZXF4X2luc3RydWN0b3I6MTAxNDA" },
+          { label: "Rika", value: "ZXF4X2luc3RydWN0b3I6Nzg1OQ==" },
         ],
       }
     }
@@ -74,9 +75,9 @@ export default airplane.task(
       },
       "endDate":"2023-08-07T23:59:59-04:00",
       "filterBy":{
-          "onlyAvailable":false,
-          "eqxInstructors": [params.instructor],
-          "skipStudioLayout":true
+        "onlyAvailable": false,
+        "eqxInstructors": [params.instructor],
+        "skipStudioLayout":true
       }
     }
     const data = await request(endpoint, query, variables);
@@ -88,7 +89,7 @@ export default airplane.task(
       const { day, sessions } = session
       const mappedSessions = sessions.map((session) => {
         const { name, facility, instructors } = session
-        return { day, name, location: facility.name, instructor: instructors[0].name }
+        return { day, name, location: facility.name, instructor: instructors[0].name}
       })
       return mappedSessions
     })
